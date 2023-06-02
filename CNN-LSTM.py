@@ -26,3 +26,18 @@ from pandas.plotting import autocorrelation_plot
 import matplotlib.pyplot as plt
 %matplotlib inline
 plt.style.use("ggplot")
+
+data = pd.read_csv('../input/price-volume-data-for-all-us-stocks-etfs/Stocks/abe.us.txt')
+#data = pd.read_csv('../input/nifty50-stock-market-data/COALINDIA.csv')
+#data = pd.read_csv('../input/stock-market-data/stock_market_data/nasdaq/csv/ABCO.csv')
+#data = pd.read_csv('./data.csv')
+# Any CSV or TXT file can be added here....
+data.head()
+#-----------------------------------------------------------------------------------------------------------
+plt.plot(data['Close'], label="Close price")
+plt.xlabel("Timestamp")
+plt.ylabel("Closing price")
+df = data
+print(df)
+
+df.describe().transpose()
