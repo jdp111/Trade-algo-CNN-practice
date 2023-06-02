@@ -15,3 +15,14 @@ import os
 
 # You can write up to 20GB to the current directory (/kaggle/working/) that gets preserved as output when you create a version using "Save & Run All" 
 # You can also write temporary files to /kaggle/temp/, but they won't be saved outside of the current session
+#-----------------------------------------------------------------------------------------------------------
+
+import math
+import seaborn as sns
+import datetime as dt
+from datetime import datetime    
+sns.set_style("whitegrid")
+from pandas.plotting import autocorrelation_plot
+import matplotlib.pyplot as plt
+%matplotlib inline
+plt.style.use("ggplot")
