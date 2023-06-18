@@ -38,6 +38,7 @@ plt.plot(data['Close'], label="Close price")
 plt.xlabel("Timestamp")
 plt.ylabel("Closing price")
 df = data
-print(df)
+print("data",df)
 
 df.describe().transpose()
+
