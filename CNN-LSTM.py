@@ -97,7 +97,7 @@ def plotAllprices():
   plt.xlabel("Timestamp")
   plt.ylabel("Closing price")
   df = data
-  print(df)
+  print(df[0])
   
   data.isnull().sum()
 
