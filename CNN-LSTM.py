@@ -42,3 +42,63 @@ print("data",df)
 
 df.describe().transpose()
 
+#-----------------------------------------------------------------------------------------------------------
+data.reset_index(drop=True, inplace=True)
+data.fillna(data.mean(), inplace=True)
+data.head()
+
+#------------------------------------------------------------------------------------------------------------
+def plotAllprices():
+  #creates EMA and plots open, close, EMA, and average prices
+  data.plot(legend=True,subplots=True, figsize = (12, 6))
+  plt.show()
+  #data['Close'].plot(legend=True, figsize = (12, 6))
+  #plt.show()
+  #data['Volume'].plot(legend=True,figsize=(12,7))
+  #plt.show()
+  
+  data.shape
+  data.size
+  data.describe(include='all').T
+  data.dtypes
+  data.nunique()
+  ma_day = [10,50,100]
+  for ma in ma_day:
+      column_name = "MA for %s days" %(str(ma))
+      data[column_name]=pd.DataFrame.rolling(data['Close'],ma).mean()
+  
+  data['Daily Return'] = data['Close'].pct_change()
+  # plot the daily return percentage
+  data['Daily Return'].plot(figsize=(12,5),legend=True,linestyle=':',marker='o')
+  plt.show()
+  
+  sns.displot(data['Daily Return'].dropna(),bins=100,color='green')
+  plt.show()
+  
+  date=pd.DataFrame(data['Date'])
+  closing_df1 = pd.DataFrame(data['Close'])
+  close1  = closing_df1.rename(columns={"Close": "data_close"})
+  close2=pd.concat([date,close1],axis=1)
+  close2.head()
+  data.reset_index(drop=True, inplace=True)
+  data.fillna(data.mean(), inplace=True)
+  data.head()
+  
+  data.nunique()
+  
+  data.sort_index(axis=1,ascending=True)
+  
+  cols_plot = ['Open', 'High', 'Low','Close','Volume','MA for 10 days','MA for 50 days','MA for 100 days','Daily Return']
+  axes = data[cols_plot].plot(marker='.', alpha=0.7, linestyle='None', figsize=(11, 9), subplots=True)
+  for ax in axes:
+      ax.set_ylabel('Daily trade')
+  
+  plt.plot(data['Close'], label="Close price")
+  plt.xlabel("Timestamp")
+  plt.ylabel("Closing price")
+  df = data
+  print(df)
+  
+  data.isnull().sum()
+
+
